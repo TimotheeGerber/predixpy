@@ -79,3 +79,16 @@ Start in the docs directory::
     python2 -m SimpleHTTPServer
     python3 -m http.server
 
+How-To Release Documentation
+----------------------------
+
+PredixPy documentation is deployed to the qwake org in the volcano-prod space.
+Here's an example of commands to be run for deploying 1.0.0rc1.
+
+    cd docs/_build/html
+    cf t -s volcano-prod
+    cf push predixpy_1_0_0rc1
+    cf map-route predixpy_1_0_0rc1 run.aws-usw02-pr.ice.predix.io --hostname predixpy
+    cf unmap-route predixpy_0_0_9 run.aws-usw02-pr.ice.predix.io --hostname predixpy
+
+
